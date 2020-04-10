@@ -65,3 +65,6 @@ def process_sentiment():
             reviews_fashion_df = reviews_fashion_df.append(temp, ignore_index=True)
 
     reviews_fashion_df.to_json('../review_sentiment_Data.json', orient='records')
+
+
+process_sentiment()
