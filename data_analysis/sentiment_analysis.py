@@ -31,10 +31,9 @@ def process_sentiment():
     from pycorenlp import StanfordCoreNLP
     nlp = StanfordCoreNLP('http://localhost:9000')
 
-    reviews_fashion_df = pd.DataFrame(columns=['reviewerID', 'asin', 'reviewText', 'overall', 'summary',
-                                               'unixReviewTime', 'reviewTime', 'sentimentValue', 'sentiment'])
+    reviews_fashion_df = pd.DataFrame(columns=['asin', 'overall', 'summary', 'reviewTime', 'sentimentValue', 'sentiment'])
 
-    for review_line in data:
+    for review_line in tqdm(data):
         temp = dict()
         if 'reviewText' in review_line:
             for col in list(reviews_fashion_df.columns):
