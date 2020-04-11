@@ -33,22 +33,25 @@ function initPlot(){
                 },
                 startOnTick: true,
                 endOnTick: true,
-                showLastLabel: true
+                showLastLabel: false
             },
             yAxis: {
                 title: {
                     text: 'Average Rating'
-                }
+                },
+                gridLineWidth: 0,
+                showLastLabel: false
             },
             legend: {
-                layout: 'vertical',
-                align: 'left',
-                verticalAlign: 'top',
-                x: 100,
-                y: 70,
-                floating: true,
-                backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
-                borderWidth: 1
+                enabled: false
+                // layout: 'vertical',
+                // align: 'left',
+                // verticalAlign: 'top',
+                // x: 100,
+                // y: 70,
+                // floating: true,
+                // backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
+                // borderWidth: 1
             },
             plotOptions: {
                 scatter: {
