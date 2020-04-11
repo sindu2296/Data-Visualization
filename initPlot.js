@@ -82,11 +82,17 @@ function initPlot(){
                     point: {
                         events:{
                             select: function(e) {
+
                                 $("#displayText").html(e);
                                 console.log(e);
                                 var modal = document.getElementById("myModal");
-                                var span = document.getElementsByClassName("close")[0];
                                 modal.style.display = "block";
+                                var modaljq = $('#myModal');
+                                var span = document.getElementsByClassName("close")[0];
+                                var spn3 = modaljq.find('.col-md-3');
+                                spn3.empty().append('<img src="'+ e.target.options.image[0] +'" height="64px" width="64px">');
+                                modaljq.find('.modal-header h4').text(e.target.options.title);
+
                             }
                         }
                     }
