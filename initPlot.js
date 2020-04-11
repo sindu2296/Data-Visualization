@@ -76,10 +76,25 @@ function initPlot(){
                         headerFormat: '<b>{series.name}</b><br>',
                         pointFormat: 'Title: {point.title} <br/> Sentiment Score: {point.sentimentValue} <br/> Rating: {point.rating}'
                     }
+                },
+                series:{
+                    allowPointSelect: true,
+                    point: {
+                        events:{
+                            select: function(e) {
+                                $("#displayText").html(e);
+                                console.log(e);
+                                var modal = document.getElementById("myModal");
+                                var span = document.getElementsByClassName("close")[0];
+                                modal.style.display = "block";
+                            }
+                        }
+                    }
                 }
             },
             series: [{
                 data: processChartData(null),
+                color: 'rgba(83, 83, 223, .5)',
                 name: 'Amazon Fashion'
             }]
         })
