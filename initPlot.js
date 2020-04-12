@@ -33,15 +33,17 @@ function initPlot(){
                     enabled: true,
                     text: 'Average Sentiment'
                 },
-                startOnTick: true,
-                endOnTick: true,
-                showLastLabel: false
+                startOnTick: false,
+                gridLineWidth: false,
+                showFirstLabel: true,
+                showLastLabel: true
             },
             yAxis: {
                 title: {
                     text: 'Average Rating'
                 },
                 gridLineWidth: 0,
+                showFirstLabel: false,
                 showLastLabel: false
             },
             legend: {
@@ -58,7 +60,7 @@ function initPlot(){
             plotOptions: {
                 scatter: {
                     marker: {
-                        radius: 5,
+                        radius: 8,
                         states: {
                             hover: {
                                 enabled: true,
@@ -102,7 +104,7 @@ function initPlot(){
             },
             series: [{
                 data: processChartData(null),
-                color: 'rgba(83, 83, 223, .5)',
+                color: 'rgba(83, 83, 223, 0.7)',
                 name: 'Amazon Fashion'
             }]
         })
