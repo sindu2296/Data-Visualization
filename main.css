@@ -71,3 +71,16 @@
     from {top: -300px; opacity: 0}
     to {top: 0; opacity: 1}
 }
+
+div#filtersMenu{
+    padding: 10px;
+    margin: 10px;
+}
+div#sentimentFilters{
+    padding: 5px;
+    margin: 5px;
+}
+div#ratingFilters{
+    padding: 5px;
+    margin: 5px;
+}

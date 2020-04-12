@@ -2,6 +2,7 @@ let reviewData = [];
 let metadata = [];
 let data = [];
 let chartData = [];
+let initialChartData = [];
 
 function getMetadata(){
     d3.json("data.json").then(function(data){
@@ -52,10 +53,10 @@ function processChartData(filter) {
             for(var prop in dataElement){
                 if(dataElement.hasOwnProperty(prop)){
                     if(prop == 'sentimentValue'){
-                        temp_object['x'] = dataElement[prop];
+                        temp_object['x'] = parseFloat(dataElement[prop]);
                         temp_object['sentimentValue'] = dataElement[prop].toPrecision(2);
                     }else if(prop == 'rating'){
-                        temp_object['y'] = dataElement[prop];
+                        temp_object['y'] = parseFloat(dataElement[prop]);
                         temp_object['rating'] = dataElement[prop].toPrecision(2);
                     }else{
                         temp_object[prop] = dataElement[prop];
@@ -64,8 +65,30 @@ function processChartData(filter) {
             }
             chartData.push(temp_object);
         });
+        initialChartData = Object.assign([], chartData);
+
     }else{
-        // process for each key in the filter object
+        // iterate through the initialChartData and add to the filterData if the dataElement is passed through all filters
+        filterData = [];
+        initialChartData.forEach(function(dataElement){
+            var flag = true;
+            for(var filterProp in filter){
+                if(filterProp == 'sentiment' ){
+                    if(filter[filterProp]['data'].length!=0){
+                        let low = filter[filterProp]['data'][0];
+                        let high = filter[filterProp]['data'][1];
+                        if(dataElement['x'] < parseFloat(low) || dataElement['x'] >= parseFloat(high)){
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(flag == true){
+                filterData.push(dataElement);
+            }
+        });
+        chartData = filterData;
     }
     return chartData;
 }

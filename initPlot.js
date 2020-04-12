@@ -3,8 +3,10 @@ window.onload = function(){
     initPlot();
 };
 
+var chart;
+
 function initPlot(){
-    var chart = new Highcharts.chart({
+    chart = new Highcharts.chart({
         chart: {
             renderTo: 'mainPlot',
             type: 'scatter',
@@ -15,7 +17,7 @@ function initPlot(){
     });
     chart.showLoading();
     setTimeout(function(){
-        Highcharts.chart('mainPlot', {
+        chart = Highcharts.chart('mainPlot', {
             chart: {
                 type: 'scatter',
                 zoomType: 'xy'
@@ -111,5 +113,43 @@ function initPlot(){
 
 //handle the click function to show the modal
 function handleClick(){
+
+}
+
+function handleFilter(event){
+    event.target.selected = true;
+    var filterObj = {'sentiment':{}};
+    var filterString = "";
+    if(event.target.getAttribute("class")!=null){
+        if(event.target.getAttribute("class").indexOf("btn") == -1){
+            filterString = event.target.parentElement.dataset.edit;
+        }else{
+            filterString = event.target.dataset.edit;
+        }
+    }else{
+        filterString = event.currentTarget.dataset.edit;
+    }
+
+    var filterStringTokens = filterString.split(" ");
+    if(filterStringTokens[0] == "sentiment"){
+        if(filterStringTokens[1] == "removeFilter"){
+            filterObj["sentiment"]["data"] = [];
+        }else{
+            filterObj["sentiment"]["data"] = filterStringTokens.slice(1, filterStringTokens.length);
+        }
+    }
+
+    chartData = processChartData(filterObj);
+    setTimeout(update, 1000, chart.update({
+        series: [{
+            data: chartData,
+            color: 'rgba(83, 83, 223, 0.7)',
+            name: 'Amazon Fashion'
+        }]
+    }));
+
+}
+
+function update(){
 
 }
