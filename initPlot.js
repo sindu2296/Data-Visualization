@@ -20,7 +20,10 @@ function initPlot(){
         chart = Highcharts.chart('mainPlot', {
             chart: {
                 type: 'scatter',
-                zoomType: 'xy'
+                zoomType: 'xy',
+                events: {
+                    click: unselectByClick,
+                }
             },
             tooltip:{
                 crosshairs: true
@@ -65,6 +68,12 @@ function initPlot(){
                             hover: {
                                 enabled: true,
                                 lineColor: 'rgb(100,100,100)'
+                            },
+                            select:{
+                                fillColor: 'rgb(83, 83, 225)',
+                                lineWidth: 1,
+                                lineColor: '#ffffff',
+                                radius: 10
                             }
                         }
                     },
@@ -79,10 +88,15 @@ function initPlot(){
                         crosshairs: true,
                         headerFormat: '<b>{series.name}</b><br>',
                         pointFormat: 'Title: {point.title} <br/> Sentiment Score: {point.sentimentValue} <br/> Rating: {point.rating}'
+                    },
+                    jitter:{
+                        x: 0.1,
+                        y: 0.1,
                     }
                 },
                 series:{
                     allowPointSelect: true,
+                    cursor: 'pointer',
                     point: {
                         events:{
                             select: function(e) {
@@ -154,4 +168,13 @@ function handleFilter(event){
 
 function update(){
 
+}
+
+function unselectByClick(){
+    var points = this.getSelectedPoints();
+    if (points.length > 0) {
+        Highcharts.each(points, function (point) {
+            point.select(false);
+        });
+    }
 }
