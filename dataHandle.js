@@ -27,7 +27,7 @@ function initData(){
         reviewData.forEach(function(reviewElement){
            if(metadata_asin == reviewElement['asin']){
                 average_sentiment_score += reviewElement['sentimentValue'];
-                average_rating += reviewElement['overall'];
+                average_rating += parseFloat(reviewElement['overall']);
                 count += 1;
            }
         });
@@ -54,10 +54,10 @@ function processChartData(filter) {
                 if(dataElement.hasOwnProperty(prop)){
                     if(prop == 'sentimentValue'){
                         temp_object['x'] = parseFloat(dataElement[prop]);
-                        temp_object['sentimentValue'] = dataElement[prop].toPrecision(2);
+                        temp_object['sentimentValue'] = parseFloat(dataElement[prop]).toPrecision(3);
                     }else if(prop == 'rating'){
                         temp_object['y'] = parseFloat(dataElement[prop]);
-                        temp_object['rating'] = dataElement[prop].toPrecision(2);
+                        temp_object['rating'] = parseFloat(dataElement[prop]).toPrecision(3);
                     }else{
                         temp_object[prop] = dataElement[prop];
                     }
