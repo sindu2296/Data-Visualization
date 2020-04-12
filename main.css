@@ -84,3 +84,8 @@ div#ratingFilters{
     padding: 5px;
     margin: 5px;
 }
+
+.btn:hover {
+    background: linear-gradient(#152B40, #152B40);
+    color: white
+}
