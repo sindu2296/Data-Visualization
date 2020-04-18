@@ -21,6 +21,7 @@ function initPlot(){
             chart: {
                 type: 'scatter',
                 zoomType: 'xy',
+                backgroundColor: 'transparent',
                 events: {
                     click: unselectByClick,
                 }
@@ -108,7 +109,10 @@ function initPlot(){
                                 var modaljq = $('#myModal');
                                 var span = document.getElementsByClassName("close")[0];
                                 var spn3 = modaljq.find('.col-md-3');
-                                spn3.empty().append('<img src="'+ e.target.options.image[0] +'" height="64px" width="64px">');
+                                if(e.target.options.new_image == "null")
+                                    spn3.empty().append('<img src="'+ e.target.options.image[0] +'" height="64px" width="64px">');
+                                else
+                                    spn3.empty().append('<img src="'+ e.target.options.new_image +'" height="250px" width="150px">');
                                 modaljq.find('.modal-header h4').text(e.target.options.title);
 
                             }
@@ -118,7 +122,7 @@ function initPlot(){
             },
             series: [{
                 data: processChartData(null),
-                color: 'rgba(83, 83, 223, 0.7)',
+                color: 'rgb(255, 26, 117,0.7)',
                 name: 'Amazon Fashion'
             }]
         })
