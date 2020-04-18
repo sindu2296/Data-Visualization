@@ -71,7 +71,7 @@ function initPlot(){
                                 lineColor: 'rgb(100,100,100)'
                             },
                             select:{
-                                fillColor: 'rgb(83, 83, 225)',
+                                fillColor: 'rgb(255, 26, 117,0.7)',
                                 lineWidth: 1,
                                 lineColor: '#ffffff',
                                 radius: 10
@@ -163,7 +163,7 @@ function handleFilter(event){
     setTimeout(update, 1000, chart.update({
         series: [{
             data: chartData,
-            color: 'rgba(83, 83, 223, 0.7)',
+            color: 'rgb(255, 26, 117,0.7)',
             name: 'Amazon Fashion'
         }]
     }));
