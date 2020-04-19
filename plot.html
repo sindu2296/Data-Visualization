@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Amazon Fashion Review</title>
 
+    <!-- Load stylesheet for slider(Add more css here if needed)-->
+    <link rel="stylesheet" type="text/css" href="slider.css">
     <!--    Load fontawesome-->
     <script src="https://kit.fontawesome.com/7fec6e579b.js" crossorigin="anonymous"></script>
 
@@ -60,7 +62,7 @@
         <br/>
         <div id="filtersMenu">
             <div id="sentimentFilters" style="float:left">
-                <p>Sentiment Based Filtering</p>
+                <p style="color:white">Sentiment Based Filtering</p>
                 <a class="btn btn-default filterBtn" data-edit="sentiment 1 2">
                     <i class="far fa-tired fa-2x"></i>
                 </a>
@@ -81,11 +83,9 @@
                     <i class="far fa-grin-stars fa-2x"></i>
                 </a>
 
-                <a class="btn btn-default filterBtn" data-edit="sentiment removeFilter">
-                    <span>No Filter</span>
-                </a>
-
             </div>
+
+            <!--
             <div id="ratingFilters" style="float:left">
                 <p>Rating Based Filtering</p>
                 <select>
@@ -113,6 +113,25 @@
                         </a>
                     </option>
                 </select>
+
+                <a class="btn btn-default filterBtn" data-edit="sentiment removeFilter">
+                    <span>No Filter</span>
+                </a>
+
+            </div>
+        -->
+
+            <div class="slidecontainer" id = "ratingFilters" style="float:left;width:250px" >
+                <p style="color:white">Rating Based Filtering</p>
+                <input type="range" min="1" max="5" value="1" class="ratings slider" id="myRange">
+
+            </div>
+
+            <div class = "btnDiv" id = "noFilterBtn" style='float:left'>
+                <br><br>
+                <a class="btn btn-default filterBtn" data-edit="sentiment removeFilter">
+                    <span>No Filter</span>
+                </a>
             </div>
         </div>
     </div>
@@ -134,6 +153,11 @@
     span.onclick = function() {
         modal.style.display = "none";
     }
+
+    var slider = document.getElementById("myRange");
+    slider.addEventListener('change',(event)=>{
+        handleFilter(event);
+    });
 </script>
 
 </html>

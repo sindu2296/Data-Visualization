@@ -3,6 +3,8 @@ window.onload = function(){
     initPlot();
 };
 
+
+
 var chart;
 
 function initPlot(){
@@ -138,11 +140,15 @@ function handleClick(){
 
 function handleFilter(event){
     event.target.selected = true;
-    var filterObj = {'sentiment':{}};
+    var filterObj = {'sentiment':{},'rating':{}};
     var filterString = "";
     if(event.target.getAttribute("class")!=null){
         if(event.target.getAttribute("class").indexOf("btn") == -1){
-            filterString = event.target.parentElement.dataset.edit;
+            if(event.target.getAttribute("class").indexOf("ratings") == 0){
+                filterString = event.target.getAttribute("class");
+            }else{
+                filterString = event.target.parentElement.dataset.edit;
+            }
         }else{
             filterString = event.target.dataset.edit;
         }
@@ -158,7 +164,10 @@ function handleFilter(event){
             filterObj["sentiment"]["data"] = filterStringTokens.slice(1, filterStringTokens.length);
         }
     }
-
+    else if(filterStringTokens[0] == 'ratings'){
+        filterObj["rating"]["data"] = event.target.value;
+    }
+    
     chartData = processChartData(filterObj);
     setTimeout(update, 1000, chart.update({
         series: [{
@@ -169,6 +178,8 @@ function handleFilter(event){
     }));
 
 }
+
+
 
 function update(){
 
