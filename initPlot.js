@@ -166,6 +166,8 @@ function handleFilter(event){
     }
     else if(filterStringTokens[0] == 'ratings'){
         filterObj["rating"]["data"] = event.target.value;
+        var sliderVal = document.getElementById("sliderVal");
+        sliderVal.innerHTML="Max Rating: "+event.target.value;
     }
     
     chartData = processChartData(filterObj);
