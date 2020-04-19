@@ -86,7 +86,7 @@ function processChartData(filter) {
                 }
                 
                 if(filterProp == 'rating'){
-                    if(filter[filterProp][data]){
+                    if(filter[filterProp]['data']){
                         let rating = filter[filterProp]['data'];
                         if(dataElement['y'] > parseFloat(rating)){
                             flag = false;
