@@ -90,8 +90,8 @@ function initPlot(){
                         pointFormat: 'Title: {point.title} <br/> Sentiment Score: {point.sentimentValue} <br/> Rating: {point.rating}'
                     },
                     jitter:{
-                        x: 0.1,
-                        y: 0.1,
+                        x: 0.015,
+                        y: 0.01,
                     }
                 },
                 series:{
