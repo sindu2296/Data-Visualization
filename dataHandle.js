@@ -48,6 +48,7 @@ function initData(){
 
 function processChartData(filter) {
     if(filter == null){
+        document.getElementById("myRange").value = 5;
         data.forEach(function(dataElement){
             temp_object = {};
             for(var prop in dataElement){
@@ -68,6 +69,8 @@ function processChartData(filter) {
         initialChartData = Object.assign([], chartData);
         
 
+        
+
     }else{
         // iterate through the initialChartData and add to the filterData if the dataElement is passed through all filters
         filterData = [];
@@ -82,6 +85,9 @@ function processChartData(filter) {
                             flag = false;
                             break;
                         }
+                    }
+                    else{
+                        document.getElementById("myRange").value = 5;
                     }
                 }
                 
