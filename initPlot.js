@@ -6,6 +6,7 @@ window.onload = function(){
 
 
 var chart;
+var currentSelectedSentiment = null
 var filterObj = {'sentiment':{},'rating':{}};
 
 function initPlot(){
@@ -139,8 +140,27 @@ function handleClick(){
 
 }
 
+function removeFilter(event){
+    //reset object to intial state 
+    filterObj = null;
+    if(currentSelectedSentiment!=null){
+    currentSelectedSentiment.style.background = "white";
+    }
+    currentSelectedSentiment = null;
+    chartData = processChartData(filterObj);
+    setTimeout(update, 1000, chart.update({
+        series: [{
+            data: chartData,
+            color: 'rgb(255, 26, 117,0.7)',
+            name: 'Amazon Fashion'
+        }]
+    }));
+    //initialize flter obj to empty k-v pairs again
+    filterObj = {'sentiment':{},'rating':{}};
+
+}
+
 function handleFilter(event){
-    event.target.selected = true;
     var filterString = "";
     if(event.target.getAttribute("class")!=null){
         if(event.target.getAttribute("class").indexOf("btn") == -1){
@@ -158,11 +178,21 @@ function handleFilter(event){
 
     var filterStringTokens = filterString.split(" ");
     if(filterStringTokens[0] == "sentiment"){
-        if(filterStringTokens[1] == "removeFilter"){
-            filterObj["sentiment"]["data"] = [];
-        }else{
-            filterObj["sentiment"]["data"] = filterStringTokens.slice(1, filterStringTokens.length);
+
+        //Handle selected css for sentiment buttons
+        if(currentSelectedSentiment!=null){
+            currentSelectedSentiment.style.background="white";
         }
+        if(event.target.parentNode != document.getElementById("sentimentFilters")){
+            event.target.parentNode.style.background = "#c9e60e";
+            currentSelectedSentiment = event.target.parentNode;
+        }
+        else{
+            event.target.style.background = "#c9e60e";
+            currentSelectedSentiment = event.target;
+        }
+
+        filterObj["sentiment"]["data"] = filterStringTokens.slice(1, filterStringTokens.length);
     }
     else if(filterStringTokens[0] == 'ratings'){
         filterObj["rating"]["data"] = event.target.value;

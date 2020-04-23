@@ -47,8 +47,14 @@ function initData(){
 }
 
 function processChartData(filter) {
-    if(filter == null){
+    
+        if(filter == null){
+
+        //move slider and emoticons to inital state  --> is done when page refreshes or is called from remove filters button's event handler    
+        var sliderVal = document.getElementById("sliderVal");
+        sliderVal.innerHTML="Max Rating: 5";
         document.getElementById("myRange").value = 5;
+
         data.forEach(function(dataElement){
             temp_object = {};
             for(var prop in dataElement){
@@ -67,7 +73,6 @@ function processChartData(filter) {
             chartData.push(temp_object);
         });
         initialChartData = Object.assign([], chartData);
-        
 
         
 
@@ -85,9 +90,6 @@ function processChartData(filter) {
                             flag = false;
                             break;
                         }
-                    }
-                    else{
-                        document.getElementById("myRange").value = 5;
                     }
                 }
                 
