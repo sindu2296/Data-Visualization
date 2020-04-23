@@ -128,7 +128,102 @@ function initPlot(){
                                 modaljq.find('.card .price').text(e.target.options.price);
                                 modaljq.find('.card #brand').text("Brand - " + e.target.options.brand);
 
+                                var text = "";
+                                for (var i=0; i< e.target.options.reviews.length;i++){
+                                    text = e.target.options.reviews[i]['reviewText'] + " "+ text ;
+                                }
+                                console.log(text);
+                                var lines = text.split(/[,\. ]+/g);
+                                var data = Highcharts.reduce(lines, function (arr, word) {
+                                    var obj = Highcharts.find(arr, function (obj) {
+                                        return obj.name === word;
+                                    });
+                                    if (obj) {
+                                        obj.weight += 1;
+                                    } else {
+                                        arr.push({
+                                            name: word,
+                                            weight: 1
+                                        });
+                                    }
+                                    return arr;
+                                }, []);
 
+                                data.sort(function(a,b){
+                                    if(a['weight'] > b['weight']) return -1;
+                                    if(a['weight'] < b['weight']) return 1;
+                                    return 0;
+                                });
+
+
+                                console.log(data);
+                                data = data.slice(0, 40);
+                                console.log(data);
+                                // Highcharts.chart('worcloud-container', {
+                                //     series: [{
+                                //         type: 'wordcloud',
+                                //         data: data,
+                                //         name: 'Occurrences'
+                                //     }],
+                                //     title: {
+                                //         text: 'Wordcloud of the product reviews'
+                                //     }
+                                // });
+                                var makeScale = function (domain, range) {
+                                    var minDomain = domain[0];
+                                    var maxDomain = domain[1];
+                                    var rangeStart = range[0];
+                                    var rangeEnd = range[1];
+
+                                    return (value) => {
+                                        return rangeStart + (rangeEnd - rangeStart) * ((value - minDomain) / (maxDomain - minDomain));
+                                    }
+                                };
+                                /**
+                                 * Find min and max weight using reduce on data array
+                                 */
+                                var minWeight = data.reduce((min, word) =>
+                                        (word.weight < min ? word.weight : min),
+                                    data[0].weight
+                                );
+                                var maxWeight = data.reduce((max, word) =>
+                                        (word.weight > max ? word.weight : max),
+                                    data[0].weight
+                                );
+                                var scale = makeScale([minWeight, maxWeight], [0.3, 1]);
+                                /**
+                                 * creating a new, scaled data array
+                                 */
+                                var scaledData = data.map(word =>
+                                    ({ name: word.name, weight: word.weight, color: `rgba(60,170,200,${scale(word.weight)})` })
+                                );
+
+                                Highcharts.chart('worcloud-container', {
+                                    series: [{
+                                        type: 'wordcloud',
+                                        data: scaledData,
+                                        rotation: {
+                                            from: 0,
+                                            to: 0,
+                                        },
+                                        minFontSize: 7,
+                                        style: {
+                                            fontFamily: 'Arial',
+                                        },
+                                        name: 'Occurrences'
+                                    }],
+                                    chart:{
+                                        events: {
+                                            click: null,
+                                        }
+                                    },
+                                    title: {
+                                        text: 'Wordcloud of the product review',
+                                        style :{
+                                            color:'#3caac8'
+                                        }
+                                    }
+                                });
                             }
                         }
                     }
