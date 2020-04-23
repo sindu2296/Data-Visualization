@@ -51,9 +51,9 @@ function processChartData(filter) {
         if(filter == null){
 
         //move slider and emoticons to inital state  --> is done when page refreshes or is called from remove filters button's event handler    
-        var sliderVal = document.getElementById("sliderVal");
-        sliderVal.innerHTML="Max Rating: 5";
-        document.getElementById("myRange").value = 5;
+        // var sliderVal = document.getElementById("sliderVal");
+        // sliderVal.innerHTML="Max Rating: 5";
+        // document.getElementById("myRange").value = 5;
 
         data.forEach(function(dataElement){
             temp_object = {};

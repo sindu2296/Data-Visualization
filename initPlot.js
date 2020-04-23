@@ -170,54 +170,71 @@ function removeFilter(event){
 }
 
 function handleFilter(event){
-    var filterString = "";
-    if(event.target.getAttribute("class")!=null){
-        if(event.target.getAttribute("class").indexOf("btn") == -1){
-            if(event.target.getAttribute("class").indexOf("ratings") == 0){
-                filterString = event.target.getAttribute("class");
-            }else{
-                filterString = event.target.parentElement.dataset.edit;
-            }
+    debugger;
+    if(event){
+        var filterString = "";
+        if(event.target == "ratingSlider"){
+            filterString = "ratings " + event.data;
         }else{
-            filterString = event.target.dataset.edit;
+            if(event.target.getAttribute("class")!=null){
+                if(event.target.getAttribute("class").indexOf("btn") == -1){
+                    if(event.target.getAttribute("class").indexOf("ratings") == 0){
+                        filterString = event.target.getAttribute("class");
+                    }else{
+                        filterString = event.target.parentElement.dataset.edit;
+                    }
+                }else{
+                    filterString = event.target.dataset.edit;
+                }
+            }else{
+                filterString = event.currentTarget.dataset.edit;
+            }
         }
-    }else{
-        filterString = event.currentTarget.dataset.edit;
+
+
+        var filterStringTokens = filterString.split(" ");
+        if(filterStringTokens[0] == "sentiment"){
+
+            //Handle selected css for sentiment buttons
+            if(currentSelectedSentiment!=null){
+                currentSelectedSentiment.style.background="white";
+            }
+            if(event.target.parentNode != document.getElementById("sentimentFilters")){
+                event.target.parentNode.style.background = "#c9e60e";
+                currentSelectedSentiment = event.target.parentNode;
+            }
+            else{
+                event.target.style.background = "#c9e60e";
+                currentSelectedSentiment = event.target;
+            }
+
+            if(filterStringTokens[1] == "removeFilter"){
+                filterObj["sentiment"]["data"] = [];
+            }else{
+                filterObj["sentiment"]["data"] = filterStringTokens.slice(1, filterStringTokens.length);
+            }
+        }
+        else if(filterStringTokens[0] == 'ratings'){
+            debugger;
+            if(filterStringTokens[1] == "removeFilter"){
+                filterObj["rating"]["data"] = [];
+                slider.setValue(5);
+            }else{
+                filterObj["rating"]["data"] = filterStringTokens[1];
+            }
+            // var sliderVal = document.getElementById("sliderVal");
+            // sliderVal.innerHTML="Max Rating: "+event.target.value;
+        }
+
+        chartData = processChartData(filterObj);
+        setTimeout(update, 1000, chart.update({
+            series: [{
+                data: chartData,
+                color: 'rgb(255, 26, 117,0.7)',
+                name: 'Amazon Fashion'
+            }]
+        }));
     }
-
-    var filterStringTokens = filterString.split(" ");
-    if(filterStringTokens[0] == "sentiment"){
-
-        //Handle selected css for sentiment buttons
-        if(currentSelectedSentiment!=null){
-            currentSelectedSentiment.style.background="white";
-        }
-        if(event.target.parentNode != document.getElementById("sentimentFilters")){
-            event.target.parentNode.style.background = "#c9e60e";
-            currentSelectedSentiment = event.target.parentNode;
-        }
-        else{
-            event.target.style.background = "#c9e60e";
-            currentSelectedSentiment = event.target;
-        }
-
-        filterObj["sentiment"]["data"] = filterStringTokens.slice(1, filterStringTokens.length);
-    }
-    else if(filterStringTokens[0] == 'ratings'){
-        filterObj["rating"]["data"] = event.target.value;
-        var sliderVal = document.getElementById("sliderVal");
-        sliderVal.innerHTML="Max Rating: "+event.target.value;
-    }
-    
-    chartData = processChartData(filterObj);
-    setTimeout(update, 1000, chart.update({
-        series: [{
-            data: chartData,
-            color: 'rgb(255, 26, 117,0.7)',
-            name: 'Amazon Fashion'
-        }]
-    }));
-
 }
 
 
