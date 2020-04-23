@@ -93,5 +93,7 @@ div#ratingFilters{
 .main-div{
     background-color: rgba(0,0,0,0.7);
     background-image: url("fashion2.png");
+    min-height: 100%;
+    width: 100%;
 
 }

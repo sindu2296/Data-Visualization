@@ -14,6 +14,7 @@
 
 <!--    Load Highchart scripts-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -32,8 +33,14 @@
     <script src="initPlot.js"></script>
 </head>
 <body>
+    <header class="w3-container w3-center w3-padding-48 w3-white">
+        <h1 class="w3-xxxlarge"><b>AMAZON FASHION REVIEWS</b></h1>
+        <h6>Welcome to the Amazon fashion <span class="w3-tag">Sentiment based reviews</span></h6>
+    </header>
     <div class="main-div">
+
         <div class="container">
+
             <div id="mainPlot">
             </div>
             <div id="myModal" class="modal">
@@ -121,14 +128,14 @@
             </div>
         -->
 
-            <div class="slidecontainer" id = "ratingFilters" style="float:left;width:250px" >
+            <div class="slidecontainer" id = "ratingFilters" style="float:left;width:250px;padding-left: 50px" >
                 <p style="color:white">Rating Based Filtering</p>
                 <input type="range" min="1" max="5" value="5" step=0.5 class="ratings slider" id="myRange">
                 <p style="color:white" id='sliderVal'>Max Rating: 5</p>
 
             </div>
 
-            <div class = "btnDiv" id = "noFilterBtn" style='float:left'>
+            <div class = "btnDiv" id = "noFilterBtn" style='float:left;padding-left: 50px'>
                 <br><br>
                 <button type="button" class="removeFilterBtn" onclick="removeFilter()">Remove Filters</button>
             </div>
