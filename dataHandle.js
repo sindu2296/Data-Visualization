@@ -86,10 +86,12 @@ function processChartData(filter) {
                     if(filter[filterProp]['data'].length!=0){
                         let low = filter[filterProp]['data'][0];
                         let high = filter[filterProp]['data'][1];
-                        if(dataElement['x'] < parseFloat(low) || dataElement['x'] >= parseFloat(high)){
+
+                        if(dataElement['x'] < parseFloat(low) || dataElement['x'] > parseFloat(high)){
                             flag = false;
                             break;
                         }
+
                     }
                 }
                 
