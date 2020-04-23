@@ -13,6 +13,7 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
 
 <!--    Load Highchart scripts-->
+
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -45,25 +46,27 @@
             </div>
             <div id="myModal" class="modal">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="close">&times;</span>
-                        <h4></h4>
-                    </div>
+
+
+
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-3">
 
                             </div>
                             <div class="col-md-9">
-                                <p>Some text in the Modal Body</p>
-                                <p>Some other text...</p>
+                                <div class="card">
+
+                                    <h4></h4>
+                                    <p class="price"></p>
+                                    <p id="brand"></p>
+                                    <p><button>Link to buy</button></p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <h4>Modal Footer</h4>
-                    </div>
-                </div>
+
+
             </div>
         </div>
         <br/>
@@ -138,9 +141,11 @@
             </div>
         </div>
     </div>
+    </div>
 </body>
 
 <script>
+
 
     var modal = document.getElementById("myModal");
     var span = document.getElementsByClassName("close")[0];
