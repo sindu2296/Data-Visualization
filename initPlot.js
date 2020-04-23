@@ -120,6 +120,7 @@ function initPlot(){
                                 else
                                     spn3.empty().append('<img src="'+ e.target.options.new_image +'" height="250px" width="150px">');
                                 modaljq.find('.modal-header h4').text(e.target.options.title);
+                                modaljq.find('.card button').unbind();
                                 modaljq.find('.card button').click(function() {
                                     window.open("https://www.amazon.com/dp/"+e.target.options.asin+"/");
                                 });
