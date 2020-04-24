@@ -216,6 +216,9 @@ function initPlot(){
                                         },
                                         name: 'Occurrences'
                                     }],
+                                    exporting: {
+                                        enabled: false
+                                    },
                                     chart:{
                                         events: {
                                             click: null,
@@ -224,7 +227,8 @@ function initPlot(){
                                     title: {
                                         text: 'Wordcloud of the product review',
                                         style :{
-                                            color:'#000000'
+                                            color:'#000000',
+                                            fontWeight: "bold"
                                         }
                                     }
                                 });
@@ -232,6 +236,9 @@ function initPlot(){
                         }
                     }
                 }
+            },
+            exporting: {
+                enabled: false
             },
             series: [{
                 data: processChartData(null),
