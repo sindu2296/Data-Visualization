@@ -6,6 +6,7 @@ from nltk.tokenize import word_tokenize
 
 def process_wordcloud_data():
     stop_words = set(stopwords.words('english'))
+    stop_words.add("I")
     with open('../data.json', 'r+') as data:
         final_data = json.load(data)
 
