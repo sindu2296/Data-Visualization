@@ -216,9 +216,6 @@ function initPlot(){
                                         },
                                         name: 'Occurrences'
                                     }],
-                                    exporting: {
-                                        enabled: false
-                                    },
                                     chart:{
                                         events: {
                                             click: null,
@@ -235,9 +232,6 @@ function initPlot(){
                         }
                     }
                 }
-            },
-            exporting: {
-                enabled: false
             },
             series: [{
                 data: processChartData(null),
