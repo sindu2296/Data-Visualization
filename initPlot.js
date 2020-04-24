@@ -17,6 +17,9 @@ function initPlot(){
             renderTo: 'mainPlot',
             type: 'scatter',
         },
+        exporting: {
+            enabled: false
+        },
         title:{
             text:null
         }
@@ -213,6 +216,9 @@ function initPlot(){
                                         },
                                         name: 'Occurrences'
                                     }],
+                                    exporting: {
+                                        enabled: false
+                                    },
                                     chart:{
                                         events: {
                                             click: null,
@@ -229,6 +235,9 @@ function initPlot(){
                         }
                     }
                 }
+            },
+            exporting: {
+                enabled: false
             },
             series: [{
                 data: processChartData(null),
