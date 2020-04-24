@@ -85,6 +85,9 @@ div#ratingFilters{
     padding: 5px;
     margin: 5px;
 }
+.tooltip{
+    z-index:0
+}
 
 .btn:hover {
     background: linear-gradient(#152B40, #152B40);
