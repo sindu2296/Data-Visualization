@@ -221,7 +221,7 @@ function initPlot(){
                                     title: {
                                         text: 'Wordcloud of the product review',
                                         style :{
-                                            color:'#696969'
+                                            color:'#000000'
                                         }
                                     }
                                 });
