@@ -17,6 +17,7 @@ function initPlot(){
         chart: {
             renderTo: 'mainPlot',
             type: 'scatter',
+            height: 450
         },
         exporting: {
             enabled: false
@@ -34,7 +35,8 @@ function initPlot(){
                 backgroundColor: 'transparent',
                 events: {
                     click: unselectByClick,
-                }
+                },
+                height: 450
             },
             tooltip:{
                 crosshairs: true
@@ -45,20 +47,38 @@ function initPlot(){
             xAxis: {
                 title: {
                     enabled: true,
-                    text: 'Average Sentiment'
+                    text: 'Average Sentiment',
+                    style:{
+                        color: "#ffffff"
+                    }
                 },
                 startOnTick: false,
                 gridLineWidth: false,
                 showFirstLabel: true,
-                showLastLabel: true
+                showLastLabel: true,
+                lineColor: "#ffffff",
+                labels:{
+                    style:{
+                        color: "#ffffff"
+                    }
+                }
             },
             yAxis: {
                 title: {
-                    text: 'Average Rating'
+                    text: 'Average Rating',
+                    style:{
+                        color: "#ffffff"
+                    }
                 },
-                gridLineWidth: 0,
+                gridLineWidth: false,
                 showFirstLabel: false,
-                showLastLabel: false
+                showLastLabel: false,
+                lineColor: "#ffffff",
+                labels:{
+                    style:{
+                        color: "#ffffff"
+                    }
+                }
             },
             legend: {
                 enabled: false
@@ -284,7 +304,6 @@ function handleFilter(event){
         }
         else if(event.target == "costSlider"){
             filterString = "cost " + event.data;
-
         }
         else{
             if(event.target.getAttribute("class")!=null){
