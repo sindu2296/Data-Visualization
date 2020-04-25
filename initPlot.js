@@ -1,7 +1,7 @@
 window.onload = function(){
     getMetadata();
     initPlot();
-};
+}
 $(document).ready(function() {
     $('.mdb-select').materialSelect();
 });
@@ -9,7 +9,8 @@ $(document).ready(function() {
 
 var chart;
 var currentSelectedSentiment = null
-var filterObj = {'sentiment':{},'rating':{},'cost':{}};
+var currentSelectedCategory = null
+var filterObj = {'sentiment':{},'rating':{},'cost':{},'category':{}};
 
 function initPlot(){
     chart = new Highcharts.chart({
@@ -344,6 +345,28 @@ function handleFilter(event){
             }
         }
 
+        else if(filterStringTokens[0] == "category") {
+
+            // Handle selected css for sentiment buttons
+            if (currentSelectedCategory != null) {
+                currentSelectedCategory.style.background = "white";
+            }
+            if (event.target.parentNode != document.getElementById("span12")) {
+                event.target.parentNode.style.background = "#c9e60e";
+                currentSelectedCategory = event.target.parentNode;
+            } else {
+                event.target.style.background = "#c9e60e";
+                currentSelectedCategory = event.target;
+            }
+
+
+            if (filterStringTokens[1] == "removeFilter") {
+                filterObj["category"]["data"] = [];
+            } else {
+                filterObj["category"]["data"] = filterStringTokens[1];
+
+            }
+        }
         chartData = processChartData(filterObj);
         setTimeout(update, 1000, chart.update({
             series: [{

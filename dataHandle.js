@@ -108,9 +108,10 @@ function processChartData(filter) {
         // iterate through the initialChartData and add to the filterData if the dataElement is passed through all filters
         filterData = [];
         initialChartData.forEach(function(dataElement){
-            var flag = true;
+            var flag = false;
             for(var filterProp in filter){
                 if(filterProp == 'sentiment' && filter[filterProp]['data']){
+                    flag=true;
                     if(filter[filterProp]['data'].length!=0){
                         let low = filter[filterProp]['data'][0];
                         let high = filter[filterProp]['data'][1];
@@ -125,6 +126,7 @@ function processChartData(filter) {
                 
                 if(filterProp == 'rating'){
                     if(filter[filterProp]['data']){
+                        flag=true;
                         let rating = filter[filterProp]['data'];
                         if(dataElement['y'] > parseFloat(rating)){
                             flag = false;
@@ -136,11 +138,25 @@ function processChartData(filter) {
                 if(filterProp == 'cost'){
 
                     if(filter[filterProp]['data']){
+                        flag=true;
                         let cost = filter[filterProp]['data'];
                         dataElementCost = dataElement['price'].split("-")[0];
                         if(parseFloat(dataElementCost.slice(1,dataElementCost.length)) > parseFloat(cost)){
                             flag = false;
                             break;
+                        }
+                    }
+                }
+                if(filterProp == 'category') {
+                    if (filter[filterProp]['data']) {
+                        if (filter[filterProp]['data'].length != 0) {
+                            flag = false;
+                            let category = filter[filterProp]['data'];
+                            if (dataElement['category'] == category) {
+                                flag = true;
+                            }
+                        } else {
+                            flag = true;
                         }
                     }
                 }
