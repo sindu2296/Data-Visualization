@@ -116,6 +116,13 @@
                     <span>all</span>
                 </a>
             </div>
+            <div class="slidecontainer" id="costFilters" style="float:left;padding-left: 50px" >
+                <p style="color:white">Cost Based Filtering</p>
+                <input id="costSlider" data-slider-id='costSlider' type="text" data-slider-min="0" data-slider-max="0" data-slider-step="1" data-slider-value="0"/>
+                <a class="btn btn-default filterBtn" data-edit="cost removeFilter" style="margin-left:10px">
+                    <span>all</span>
+                </a>
+            </div>
         </div>
     </div>
     </div>
@@ -147,6 +154,10 @@
         tooltip: 'always',
         tooltip_position: 'bottom'
     });
+    var costSlider = new Slider("#costSlider", {
+        tooltip: 'always',
+        tooltip_position: 'bottom'
+    });
     // slider.addEventListener('change',(event)=>{
     //     handleFilter(event);
     // });
@@ -156,6 +167,10 @@
         ratingChangeEvent['data'] = value;
         handleFilter(ratingChangeEvent);
     });
+
+
+
+
 </script>
 
 </html>

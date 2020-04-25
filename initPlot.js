@@ -9,7 +9,7 @@ $(document).ready(function() {
 
 var chart;
 var currentSelectedSentiment = null
-var filterObj = {'sentiment':{},'rating':{}};
+var filterObj = {'sentiment':{},'rating':{},'cost':{}};
 
 function initPlot(){
     chart = new Highcharts.chart({
@@ -97,7 +97,7 @@ function initPlot(){
                     tooltip: {
                         crosshairs: true,
                         headerFormat: '<b>{series.name}</b><br>',
-                        pointFormat: 'Title: {point.title} <br/> Sentiment Score: {point.sentimentValue} <br/> Rating: {point.rating}'
+                        pointFormat: 'Title: {point.title} <br/> Sentiment Score: {point.sentimentValue} <br/> Rating: {point.rating}<br/> Cost(USD): {point.price}'
                     },
                     jitter:{
                         x: 0.015,
@@ -112,7 +112,6 @@ function initPlot(){
                             select: function(e) {
 
                                 $("#displayText").html(e);
-                                console.log(e);
                                 var modal = document.getElementById("myModal");
                                 modal.style.display = "block";
                                 var modaljq = $('#myModal');
@@ -160,9 +159,9 @@ function initPlot(){
                                 });
 
 
-                                console.log(data);
+
                                 data = data.slice(0, 40);
-                                console.log(data);
+
                                 // Highcharts.chart('worcloud-container', {
                                 //     series: [{
                                 //         type: 'wordcloud',
@@ -257,7 +256,7 @@ function handleClick(){
 }
 
 function removeFilter(event){
-    //reset object to intial state 
+    //reset object to initial state
     filterObj = null;
     if(currentSelectedSentiment!=null){
     currentSelectedSentiment.style.background = "white";
@@ -267,12 +266,12 @@ function removeFilter(event){
     setTimeout(update, 1000, chart.update({
         series: [{
             data: chartData,
-            color: 'rgb(255, 26, 117,0.7)',
+            color: 'rgba(255,26,117,0.7)',
             name: 'Amazon Fashion'
         }]
     }));
-    //initialize flter obj to empty k-v pairs again
-    filterObj = {'sentiment':{},'rating':{}};
+    //initialize filter obj to empty k-v pairs again
+    filterObj = {'sentiment':{},'rating':{},'cost':{}};
 
 }
 
@@ -281,7 +280,12 @@ function handleFilter(event){
         var filterString = "";
         if(event.target == "ratingSlider"){
             filterString = "ratings " + event.data;
-        }else{
+        }
+        else if(event.target == "costSlider"){
+            filterString = "cost " + event.data;
+
+        }
+        else{
             if(event.target.getAttribute("class")!=null){
                 if(event.target.getAttribute("class").indexOf("btn") == -1){
                     if(event.target.getAttribute("class").indexOf("ratings") == 0){
@@ -329,6 +333,15 @@ function handleFilter(event){
             }
             // var sliderVal = document.getElementById("sliderVal");
             // sliderVal.innerHTML="Max Rating: "+event.target.value;
+        }
+
+        else if(filterStringTokens[0] == 'cost'){
+            if(filterStringTokens[1] == "removeFilter"){
+                filterObj['cost']['data'] = [];
+                costSlider.setValue(maxCost)
+            }else{
+                filterObj['cost']['data'] = filterStringTokens[1];
+            }
         }
 
         chartData = processChartData(filterObj);
