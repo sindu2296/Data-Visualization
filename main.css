@@ -101,6 +101,13 @@ div#categoryFilters{
     z-index:0
 }
 
+.customTooltip{
+    width: 150px;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .btn:hover {
     background: linear-gradient(#152B40, #152B40);
     color: white

@@ -38,8 +38,24 @@ function initPlot(){
                 },
                 height: 450
             },
-            tooltip:{
-                crosshairs: true
+            tooltip: {
+                useHTML:true,
+                formatter:function(){
+                    debugger;
+                    var tooltipStr = "<div class='customTooltip'>";
+                    tooltipStr += '<b> ' + this.series.name +'</b><br>';
+                    tooltipStr += 'Title: ' + this.point.title + '<br/> Sentiment Score: ' + this.point.sentimentValue +
+                        '<br/> Rating: ' + this.point.rating + '<br/> Cost(USD): ' + this.point.price;
+
+                    tooltipStr += '</div>';
+                    return tooltipStr;
+                },
+                crosshairs: true,
+                // headerFormat: '<b>{series.name}</b><br>',
+                // pointFormat: 'Title: {point.title} <br/> Sentiment Score: {point.sentimentValue} <br/> Rating: {point.rating}<br/> Cost(USD): {point.price}',
+                // style: {
+                //     textOverflow: 'ellipsis'
+                // }
             },
             title:{
                 text: null
@@ -121,8 +137,6 @@ function initPlot(){
                     },
                     tooltip: {
                         crosshairs: true,
-                        headerFormat: '<b>{series.name}</b><br>',
-                        pointFormat: 'Title: {point.title} <br/> Sentiment Score: {point.sentimentValue} <br/> Rating: {point.rating}<br/> Cost(USD): {point.price}'
                     },
                     jitter:{
                         x: 0.015,
