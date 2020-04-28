@@ -105,7 +105,7 @@ function initPlot(){
                                 lineColor: 'rgb(100,100,100)'
                             },
                             select:{
-                                fillColor: 'rgb(255, 26, 117,0.7)',
+                                fillColor: 'rgb(255,250,250,0.7)',
                                 lineWidth: 1,
                                 lineColor: '#ffffff',
                                 radius: 10
@@ -266,7 +266,7 @@ function initPlot(){
             },
             series: [{
                 data: processChartData(null),
-                color: 'rgb(255, 26, 117,0.7)',
+                color: 'rgb(255,250,250,0.7)',
                 name: 'Amazon Fashion'
             }]
         })
@@ -291,7 +291,7 @@ function removeFilter(event){
     setTimeout(update, 1000, chart.update({
         series: [{
             data: chartData,
-            color: 'rgba(255,26,117,0.7)',
+            color: 'rgb(255,250,250,0.7)',
             name: 'Amazon Fashion'
         }]
     }));
@@ -396,7 +396,7 @@ function handleFilter(event){
         setTimeout(update, 1000, chart.update({
             series: [{
                 data: chartData,
-                color: 'rgb(255, 26, 117,0.7)',
+                color: 'rgb(255,250,250,0.7)',
                 name: 'Amazon Fashion'
             }]
         }));
