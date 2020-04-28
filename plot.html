@@ -121,54 +121,28 @@
                 </a>
             </div>
 
-            <div class="categories" id="categoryFilters" style="float:left;padding-left: 20px">
+            <div class="categories" id="categoryFilters" style="float:right;padding-left: 50px; padding-top: 20px">
 
-                <div id = "span12">
-                    <p style="color: white">Categories</p>
 
-                    <!--                    <select id="sizeby">-->
-                    <!--                        <option class="btn btn-default filterBtn" data-edit="category Clothing" selected>Clothing</option>-->
-                    <!--                        <option class="btn btn-default filterBtn" data-edit="category Accessories">Accessories</option>-->
-                    <!--                    </select>-->
-                    <a class="btn btn-default filterBtn" data-edit="category Clothing">
-                        <span>Clothing</span>
-                        <!--                        <i class="far fa-frown fa-2x"></i>-->
-                    </a>
+                <p style="color: white">Categories Based Filtering</p>
 
-                    <a class="btn btn-default filterBtn" data-edit="category Accessories">
-                        <!--                        <i class="fa fa-meh-o fa-2x" aria-hidden="true"></i>-->
-                        <span>Accessories</span>
-                    </a>
 
-                    <a class="btn btn-default filterBtn" data-edit="category BabyProducts">
-                        <!--                        <i class="fa fa-meh-o fa-2x" aria-hidden="true"></i>-->
-                        <span>Baby Products</span>
-                    </a>
 
-                    <a class="btn btn-default filterBtn" data-edit="category BagsHousehold">
-                        <!--                        <i class="fa fa-meh-o fa-2x" aria-hidden="true"></i>-->
-                        <span>Bags & Household</span>
-                    </a>
+                <select id="selectBox" onchange="changeFunc(value);">
+                    <option value="" selected>Choose a Category</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Accessories">Accessories</option>
+                    <option value="BabyProducts">Baby Products</option>
+                    <option value="BagsHousehold">Bags & Household</option>
+                    <option value="Jewelry">Jewelry</option>
+                    <option value="SportsShoes">Sports & Shoes</option>
+                    <option value="removeFilter">All Categories</option>
+                </select>
 
-                    <a class="btn btn-default filterBtn" data-edit="category Jewelry">
-                        <!--                        <i class="fa fa-meh-o fa-2x" aria-hidden="true"></i>-->
-                        <span>Jewelry</span>
-                    </a>
-
-                    <a class="btn btn-default filterBtn" data-edit="category SportsShoes">
-                        <!--                        <i class="fa fa-meh-o fa-2x" aria-hidden="true"></i>-->
-                        <span>Sports & Shoes</span>
-                    </a>
-
-                    <a class="btn btn-default filterBtn" data-edit="category removeFilter">
-
-                        <span>all</span>
-                        <!--                        <i class="fa fa-meh-o fa-2x" aria-hidden="true"></i>-->
-                    </a>
-
-                </div>
 
             </div>
+
+
         </div>
     </div>
     </div>
@@ -214,7 +188,12 @@
         handleFilter(ratingChangeEvent);
     });
 
-
+    function changeFunc(value) {
+        let categoryChangeEvent = {};
+        categoryChangeEvent['target'] = "selectBox";
+        categoryChangeEvent['data'] = value;
+        handleFilter(categoryChangeEvent);
+    }
 
 
 </script>

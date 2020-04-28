@@ -305,6 +305,9 @@ function handleFilter(event){
         else if(event.target == "costSlider"){
             filterString = "cost " + event.data;
         }
+        else if(event.target == "selectBox"){
+            filterString = "category " + event.data;
+        }
         else{
             if(event.target.getAttribute("class")!=null){
                 if(event.target.getAttribute("class").indexOf("btn") == -1){
@@ -367,17 +370,16 @@ function handleFilter(event){
         else if(filterStringTokens[0] == "category") {
 
             // Handle selected css for sentiment buttons
-            if (currentSelectedCategory != null) {
-                currentSelectedCategory.style.background = "white";
-            }
-            if (event.target.parentNode != document.getElementById("span12")) {
-                event.target.parentNode.style.background = "#c9e60e";
-                currentSelectedCategory = event.target.parentNode;
-            } else {
-                event.target.style.background = "#c9e60e";
-                currentSelectedCategory = event.target;
-            }
-
+            // if (currentSelectedCategory != null) {
+            //     currentSelectedCategory.style.background = "white";
+            // }
+            // if (event.target.parentNode != document.getElementById("span12")) {
+            //     event.target.parentNode.style.background = "#c9e60e";
+            //     currentSelectedCategory = event.target.parentNode;
+            // } else {
+            //     event.target.style.background = "#c9e60e";
+            //     currentSelectedCategory = event.target;
+            // }
 
             if (filterStringTokens[1] == "removeFilter") {
                 filterObj["category"]["data"] = [];
