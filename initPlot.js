@@ -49,7 +49,8 @@ function initPlot(){
                     enabled: true,
                     text: 'Average Sentiment',
                     style:{
-                        color: "#ffffff"
+                        color: "#ffffff",
+                        fontSize: '13px'
                     }
                 },
                 startOnTick: false,
@@ -59,7 +60,8 @@ function initPlot(){
                 lineColor: "#ffffff",
                 labels:{
                     style:{
-                        color: "#ffffff"
+                        color: "#ffffff",
+                        fontSize: '12px'
                     }
                 }
             },
@@ -67,7 +69,8 @@ function initPlot(){
                 title: {
                     text: 'Average Rating',
                     style:{
-                        color: "#ffffff"
+                        color: "#ffffff",
+                        fontSize: '13px'
                     }
                 },
                 gridLineWidth: false,
@@ -76,7 +79,8 @@ function initPlot(){
                 lineColor: "#ffffff",
                 labels:{
                     style:{
-                        color: "#ffffff"
+                        color: "#ffffff",
+                        fontSize: '12px'
                     }
                 }
             },
