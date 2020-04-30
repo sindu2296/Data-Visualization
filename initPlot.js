@@ -41,7 +41,6 @@ function initPlot(){
             tooltip: {
                 useHTML:true,
                 formatter:function(){
-                    debugger;
                     var tooltipStr = "<div class='customTooltip'>";
                     tooltipStr += '<b> ' + this.series.name +'</b><br>';
                     tooltipStr += 'Title: ' + this.point.title + '<br/> Sentiment Score: ' + this.point.sentimentValue +
