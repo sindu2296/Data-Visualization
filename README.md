@@ -1,6 +1,6 @@
 CSE578 Data-Visualization Project-Group 9
 
-Link to Visualization: surya97.github.io
+Link to Visualization: [link](surya97.github.io)
 Link to Visualization: https://www.youtube.com/watch?v=cg4zIv4_GVc
 
 Team Members:
