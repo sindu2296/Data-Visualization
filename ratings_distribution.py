@@ -53,8 +53,10 @@ plt.show()
 #print(year_rating[2013])
 
 df = pd.DataFrame({
-    'ratings': [year_rating[2003],year_rating[2004],year_rating[2005], year_rating[2006], year_rating[2007], year_rating[2008], year_rating[2009], year_rating[2010], year_rating[2011], year_rating[2012], year_rating[2013], year_rating[2014], year_rating[2015], year_rating[2016], year_rating[2017], year_rating[2018]],
-}, index=pd.date_range(start=pd.datetime(2003, 1, 1), periods=16, freq='A'))
+    'ratings': [year_rating[2015], year_rating[2016], year_rating[2017], year_rating[2018]],
+}, index=pd.date_range(start=pd.datetime(2015, 1, 1), periods=4, freq='A'))
 ax = df.plot.area(y='ratings')
-
+#plt.title("Ratings Distribution")
+plt.xlabel("Year")
+plt.ylabel("Number of ratings")
 
